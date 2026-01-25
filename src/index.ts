@@ -1,5 +1,7 @@
 import cors from "cors";
 import express from "express";
+import securityMiddleware from "./middlewares/security";
+import subjectRoutes from "./routes/subjects";
 
 const app = express();
 const PORT = 8000;
@@ -18,14 +20,14 @@ app.use(
 // Middleware
 app.use(express.json());
 
+app.use(securityMiddleware);
+
 // Root GET route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the PERN Classroom Backend!" });
 });
 
-// Import and use subjects routes
-import subjectRoutes from "./routes/subjects";
-
+// subjects routes
 app.use("/api/subjects", subjectRoutes);
 
 // Start server
