@@ -1,10 +1,12 @@
+import { toNodeHandler } from "better-auth/node";
 import cors from "cors";
 import express from "express";
+import { auth } from "./lib/auth";
 import securityMiddleware from "./middlewares/security";
 import subjectRoutes from "./routes/subjects";
 
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT ?? 8000;
 
 if (!process.env.FRONTEND_URL)
   throw new Error("FRONTEND_URL is not defined in environment variables");
@@ -21,6 +23,8 @@ app.use(
 app.use(express.json());
 
 app.use(securityMiddleware);
+
+app.all("/api/auth/*splat", toNodeHandler(auth));
 
 // Root GET route
 app.get("/", (req, res) => {
