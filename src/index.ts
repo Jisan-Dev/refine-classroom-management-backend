@@ -4,6 +4,7 @@ import express from "express";
 import { auth } from "./lib/auth";
 import securityMiddleware from "./middlewares/security";
 import subjectRoutes from "./routes/subjects";
+import userRoutes from "./routes/users";
 
 const app = express();
 const PORT = process.env.PORT ?? 8000;
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 
 // subjects routes
 app.use("/api/subjects", subjectRoutes);
+app.use("/api/users", userRoutes);
 
 // Start server
 app.listen(PORT, () => {
