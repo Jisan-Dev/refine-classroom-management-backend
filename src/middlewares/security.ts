@@ -15,7 +15,7 @@ const ajTeacherStudent = aj.withRule(
   slidingWindow({
     mode: "LIVE",
     interval: "1m",
-    max: 10,
+    max: 20,
   }),
 );
 
@@ -23,7 +23,7 @@ const ajGuest = aj.withRule(
   slidingWindow({
     mode: "LIVE",
     interval: "1m",
-    max: 5,
+    max: 15,
   }),
 );
 

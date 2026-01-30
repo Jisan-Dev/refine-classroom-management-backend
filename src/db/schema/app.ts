@@ -76,7 +76,7 @@ export const classes = pgTable(
   },
   (table) => [
     index("classes_subject_id_idx").on(table.subjectId),
-    index("classes_teachet_id_idx").on(table.teacherId),
+    index("classes_teacher_id_idx").on(table.teacherId),
   ],
 );
 

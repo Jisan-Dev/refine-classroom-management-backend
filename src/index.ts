@@ -1,10 +1,11 @@
 import { toNodeHandler } from "better-auth/node";
 import cors from "cors";
 import express from "express";
-import { auth } from "./lib/auth";
-import securityMiddleware from "./middlewares/security";
-import subjectRoutes from "./routes/subjects";
-import userRoutes from "./routes/users";
+import { auth } from "./lib/auth.js";
+import securityMiddleware from "./middlewares/security.js";
+import classesRoutes from "./routes/classes.js";
+import subjectRoutes from "./routes/subjects.js";
+import userRoutes from "./routes/users.js";
 
 const app = express();
 const PORT = process.env.PORT ?? 8000;
@@ -32,9 +33,10 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the PERN Classroom Backend!" });
 });
 
-// subjects routes
+// routes
 app.use("/api/subjects", subjectRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/classes", classesRoutes);
 
 // Start server
 app.listen(PORT, () => {
